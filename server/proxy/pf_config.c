@@ -130,6 +130,8 @@ static BOOL pf_config_load_server(wIniFile* ini, proxyConfig* config)
 static BOOL pf_config_load_target(wIniFile* ini, proxyConfig* config)
 {
 	const char* target_host;
+	const char* target_user;
+	const char* target_password;
 
 	if (!pf_config_get_uint16(ini, "Target", "Port", &config->TargetPort))
 		return FALSE;
@@ -138,6 +140,18 @@ static BOOL pf_config_load_target(wIniFile* ini, proxyConfig* config)
 
 	if (!target_host)
 		return FALSE;
+
+	target_user = pf_config_get_str(ini, "Target", "User");
+	target_password = pf_config_get_str(ini, "Target", "Password");
+	if (target_user)
+	{
+		config->TargetUser = _strdup(target_user);
+	}
+
+	if (target_password)
+	{
+		config->TargetPassword = _strdup(target_password);
+	}
 
 	config->TargetHost = _strdup(target_host);
 	if (!config->TargetHost)

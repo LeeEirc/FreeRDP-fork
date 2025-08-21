@@ -119,6 +119,14 @@ static BOOL pf_server_get_target_info(rdpContext* context, rdpSettings* settings
 	}
 
 	settings->ServerPort = config->TargetPort > 0 ? config->TargetPort : 3389;
+	if (config->TargetUser)
+	{
+		settings->Username = _strdup(config->TargetUser);
+	}
+	if (config->TargetPassword)
+	{
+		settings->Password = _strdup(config->TargetPassword);
+	}
 	return TRUE;
 }
 

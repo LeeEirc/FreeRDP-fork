@@ -37,6 +37,9 @@ struct proxy_config
 	BOOL UseLoadBalanceInfo;
 	char* TargetHost;
 	UINT16 TargetPort;
+	char* TargetUser;
+	char* TargetPassword;
+
 
 	/* input */
 	BOOL Keyboard;
